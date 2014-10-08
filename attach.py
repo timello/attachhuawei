@@ -10,7 +10,7 @@ result = lsusb.communicate()[0]
 
 pattern = re.compile("Bus (\d+) Device (\d+): ID.+Huawei")
 
-for i, line in enumerate(result.splitlines()):
+for line in result.splitlines():
     for match in re.finditer(pattern, line):
         bus, device = match.groups()
         xml = "<hostdev type='usb'><source><address bus='%s' device='%s' /></source></hostdev>"  % (int(bus), int(device)) 
